@@ -9,15 +9,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "rewards")
@@ -48,12 +48,9 @@ public class Reward {
 	private Date updatedAt;
 	
 //	Relations
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(
-			name = "users_rewards",
-			joinColumns = @JoinColumn (name="reward_id"),
-			inverseJoinColumns = @JoinColumn (name = "user_id"))
-	private List <User> winners;
+	@OneToMany(mappedBy="reward", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List <UserReward> prizes;
 	
 //	Constructor
 	public Reward() {
@@ -144,12 +141,12 @@ public class Reward {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<User> getWinners() {
-		return winners;
+	public List<UserReward> getPrizes() {
+		return prizes;
 	}
 
-	public void setWinners(List<User> winners) {
-		this.winners = winners;
+	public void setPrizes(List<UserReward> prizes) {
+		this.prizes = prizes;
 	}
 
 }

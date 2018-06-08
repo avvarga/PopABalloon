@@ -12,10 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="users")
@@ -37,7 +40,7 @@ public class User {
 	private Date updatedAt;
 	
 //	Relations
-//	Security Relations
+//	-- Security Relations
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "users_roles", 
@@ -45,13 +48,10 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
     
-//    Other Relations
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-    		name= "users_prizes",
-    		joinColumns = @JoinColumn(name = "user_id"),
-    		inverseJoinColumns = @JoinColumn(name = "reward_id"))
-    private List <Reward> prizes;
+//    -- Rewards
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List <UserReward> prizes;
 	
 //	Constructors
 	public User() {
@@ -123,11 +123,11 @@ public class User {
 		this.roles = roles;
 	}
 
-	public List<Reward> getPrizes() {
+	public List<UserReward> getPrizes() {
 		return prizes;
 	}
 
-	public void setPrizes(List<Reward> prizes) {
+	public void setPrizes(List<UserReward> prizes) {
 		this.prizes = prizes;
 	}
 	
