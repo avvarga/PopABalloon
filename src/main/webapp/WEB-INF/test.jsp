@@ -8,10 +8,12 @@
 	<link rel="icon" href="resources/balloons.png">
 	<title>Pop-A-Balloon</title>
 	<link rel="stylesheet" href="/resources/style.css" type="text/css">
+		<link rel="stylesheet" href="/resources/skeleton.css" type="text/css">
+	
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="resources/scripts.js" type="text/javascript"></script>
 </head>
-	<body>
+	<body">
 		<!-- BACKGROUND -->
         <div class="grass"></div>
         <div class="board"></div>
@@ -19,6 +21,20 @@
         <div class="cloud"></div>
         <div class="cloud"></div>
         <!-- END BACKGROUD -->
+        
+       	<div style="background-color:white; display:inline-block;padding:30px;margin:auto auto;">
+       		<form action="">
+       		
+	       		Login <input type="text">
+	       		<br>
+	       		Code <input type="text">
+	       		<br>
+	       		<input type="submit">
+       		</form>
+       	
+       	
+       	</div>
+        
         
 	</body>
 </html>

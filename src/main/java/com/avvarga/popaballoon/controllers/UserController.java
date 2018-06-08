@@ -18,4 +18,9 @@ public class UserController {
 	public String main() {
 		return "index.jsp";
 	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		return "test.jsp";
+	}
 }
