@@ -60,7 +60,7 @@
             <div class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <img alt="Movie Tickets" src="resources/movie-tickets.jpg">
+                    <img alt="Movie Tickets" src="resources/${prize.image}">
                     <h1>Congratulations!</h1>
                     <p>You won Movie Tickets</p>
                     <p>Please reach out Jimena@ to claim your prize</p>
