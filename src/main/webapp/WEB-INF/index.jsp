@@ -26,26 +26,14 @@
         <!-- Enter code page  -->
         
         <div class="enterCodeBox content-background">
-        <h1>Claim your Code</h1>
-        	<form action="/" class="form">
-			<input type="text" placeholder="Login" name="login">
-			<input type="text" placeholder="Code" name="code">
-			<button class='claim' type="submit">Claim</button>
-			</form>
-			<a href="/" id="loginAsAdmin">Login as Admin</a>
-        </div>
-        
-        
-        
-        <div id="adminLoginForm" class="content-background">
-        <h1>Login As Admin</h1>
-        	<form action="/" class="form">
-			<input type="text" placeholder="Login" name="login">
-			<input type="password" placeholder="Password" name="code">
-			<button class='claim' type="submit">Login</button>
+        <h1>Login</h1>
+        	<form class="form" id="loginForm">
+				<input type="text" placeholder="Login" name="login">
+				<input type="text" placeholder="Code" name="code">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<button class='claim' type="submit">Claim</button>
 			</form>
         </div>
-        
         <!-- End of enter code page -->
         
         <!-- Pop the balloon -->
@@ -60,7 +48,7 @@
             <div class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <img alt="Movie Tickets" src="resources/movie-tickets.jpg">
+                    <img alt="Movie Tickets" src="resources/${prize.image}">
                     <h1>Congratulations!</h1>
                     <p>You won Movie Tickets</p>
                     <p>Please reach out Jimena@ to claim your prize</p>
