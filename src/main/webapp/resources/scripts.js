@@ -5,20 +5,25 @@ $(document).ready(function(){
         $(".enterCodeBox").slideDown("slow");
     })
     
-    $("#loginAsAdmin").on("click", function(){
-        $(this).parent().slideUp("fast");
-        $("#adminLoginForm").slideDown("slow");
-        return false;
-    })
-    
     $(".claim").on("click", function(){
+    	$.ajax({
+            type: 'POST',
+            url: "/validate",
+            data: $("#loginForm").serialize(),
+            success: function (response) {
+                console.log('Submission was successful.');
+                console.log(response);
+            },
+            error: function (response) {
+                console.log('An error occurred.');
+                console.log(response);
+            },
+        });
     	$(".board").show();
         $(".enterCodeBox").slideUp("fast");
         $(".balloons-page").slideDown("fast");
         return false;
     })
-    
-    
     
     $(".balloon").on("click", function(){
         $(this).hide();
