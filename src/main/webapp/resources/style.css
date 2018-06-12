@@ -15,6 +15,15 @@ html{
     overflow: hidden;
     
 }
+
+h1{
+	color:white;
+	font-size: 5em;
+}
+
+.modal h1{
+	color: black;
+}
 .grass { 
     height: 80%;
     position: fixed;
@@ -69,7 +78,7 @@ html{
 
 div.board{
     display: none;
-    background-image: url(wooden-camping-signs-clipart-1.png);
+    background-image: url(/resources/board.png);
     background-position-y: bottom;
     background-position-x: center;
     background-repeat: no-repeat;
@@ -195,11 +204,12 @@ div.board{
 .modal-content {
     text-align: center;
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: auto auto;
     border-radius: 40px;
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
+    overflow: auto;
 }
 
 .modal-content  > button{
@@ -233,16 +243,15 @@ div.board{
     cursor: pointer;
     margin-top: 15%;
     display: block;
-    background-color: yellow;
-    transform: rotate(-20deg);
-    border: 10px solid red;
+    background-color: rgb(0,0,0,.4);
+    border: 1px solid white;
     
 }
 .title-text{
     display: inline-block;
     font-size: 6vw;
     font-family: 'Jua', sans-serif;
-    color: #0803f8;
+    color: white;
 }
 
 
@@ -250,4 +259,92 @@ div.board{
     width: 80%;
     height: 600px;
 }
+
+.enterCodeBox{
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 10px; 
+	display: inline-block;
+	margin: auto auto;
+	padding: 45px;
+	display: none;
+	margin-top: 15%;
+	vertical-align: middle;
+	text-align: center;
+	width: 60%;
+}
+
+form{
+	margin: auto auto;
+	display: block;
+	
+}
+
+input{
+		
+		display: inline-block;
+		appearance: none;
+		outline: 0;
+		border: 1px solid fade(white, 40%);
+		background-color: fade(white, 20%);
+		width: 250px;
+		border-radius: 3px;
+		padding: 10px 15px;
+		margin: 0 auto 10px auto;
+		display: block;
+		text-align: center;
+		font-size: 18px;
+		color: black;
+		transition-duration: 0.25s;
+		font-weight: 300;
+	}
+		
+	input:focus{
+		background-color: white;
+		width: 300px;
+		color: black;
+	}
+	
+	button{
+		appearance: none;
+		outline: 0;
+		background-color: white;
+		border: 0;
+		padding: 10px 15px;
+		color: @prim;
+		border-radius: 3px;
+		width: 250px;
+		cursor: pointer;
+		font-size: 18px;
+		transition-duration: 0.25s;
+	}
+	button:hover{
+		background-color: rgb(245, 247, 249);
+	}
+	
+	
+	img{
+	display: inline-block;
+	width: 15rem;}
+	a{
+	color: white;
+	}
+	
+	a:visited{
+		color:aqua;
+	}
+	
+	#adminLoginForm{
+		display: none;
+	}
+	
+	.content-background{
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 10px; 
+	margin: auto auto;
+	padding: 45px;
+	margin-top: 15%;
+	vertical-align: middle;
+	text-align: center;
+	width: 60%;
+	}
 
