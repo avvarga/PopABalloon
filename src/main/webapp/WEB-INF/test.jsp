@@ -34,7 +34,13 @@
        	
        	
        	</div>
-        
+       	
+       	<form action ="/test/generate" method="post">
+        LOGIN: <input type = "text" name = "login">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="submit">
+   		</form>	
+        <c:out value="${code}"/>
         
 	</body>
 </html>
