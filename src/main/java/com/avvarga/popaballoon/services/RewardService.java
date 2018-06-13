@@ -13,7 +13,7 @@ public class RewardService {
 		this.rRepo = rRepo;
 	}
 
-	public Reward findById(Long id) {
-		return rRepo.findById(id).get();
+	public Reward findById(int id) {
+		return rRepo.findById((long) id).get();
 	}
 }

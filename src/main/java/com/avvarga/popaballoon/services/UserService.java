@@ -28,6 +28,9 @@ public class UserService {
         user.setRoles(roleRepository.findByName("ROLE_USER"));
         uRepo.save(user);
     }
+	public void updateUser(User user) {
+		uRepo.save(user);
+	}
 	
 	
 }
