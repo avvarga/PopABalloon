@@ -205,6 +205,7 @@ div.board{
 }
 
 .modal-content {
+	
     text-align: center;
     background-color: #fefefe;
     margin: auto auto;
@@ -213,6 +214,7 @@ div.board{
     border: 1px solid #888;
     width: 50%;
     overflow: auto;
+    z-index: 1;
 }
 
 .modal-content  > button{
@@ -328,17 +330,6 @@ input{
 	img{
 	display: inline-block;
 	width: 15rem;}
-	a{
-	color: white;
-	}
-	
-	a:visited{
-		color:aqua;
-	}
-	
-	#adminLoginForm{
-		display: none;
-	}
 	
 	.content-background{
 	background-color: rgba(0, 0, 0, 0.6);
@@ -350,4 +341,6 @@ input{
 	text-align: center;
 	width: 60%;
 	}
-
+.hidden{
+	display: none;
+}

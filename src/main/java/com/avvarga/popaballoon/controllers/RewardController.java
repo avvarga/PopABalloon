@@ -4,6 +4,10 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,6 +47,7 @@ public class RewardController {
 			ur.setStatus("Pending");
 			urServ.save(ur);
 			prizes.add(ur);
+			SecurityContextHolder.getContext().setAuthentication(null);
 			System.out.println(prize.getName());
 			user.setCode("invalid");
 			uServ.updateUser(user);

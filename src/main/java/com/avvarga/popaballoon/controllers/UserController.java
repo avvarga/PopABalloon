@@ -5,10 +5,12 @@ import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import com.avvarga.popaballoon.models.User;
 import com.avvarga.popaballoon.services.UserService;
@@ -23,7 +25,8 @@ public class UserController {
 	
 	
 	@RequestMapping("/")
-	public String main() {
+	public String main(HttpServletRequest request) {
+		SecurityContextHolder.getContext().setAuthentication(null);
 		return "index.jsp";
 	}
 	
@@ -33,15 +36,15 @@ public class UserController {
 	}
 	
 	@RequestMapping("/validate")
+	@ResponseBody
 	public String validate(@RequestParam("login") String login, @RequestParam("code") String code, HttpServletRequest request) {
 		try {
 			request.login(login, code);
 		} catch (ServletException e) {
-			System.out.println("Errors");
-			return "redirect:/"; 
+			System.out.println(e);
+			return "Error"; 
 		}
-		System.out.println("you have entered");
-		return "redirect:/";
+		return "Granted";
 		
 	}
 	
