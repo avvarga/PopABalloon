@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="resources/scripts.js" type="text/javascript"></script>
 </head>
-	<body">
+	<body>
 		<!-- BACKGROUND -->
         <div class="grass"></div>
         <div class="board"></div>
@@ -23,24 +23,12 @@
         <!-- END BACKGROUD -->
         
        	<div style="background-color:white; display:inline-block;padding:30px;margin:auto auto;">
-       		<form action="">
-       		
-	       		Login <input type="text">
-	       		<br>
-	       		Code <input type="text">
-	       		<br>
-	       		<input type="submit">
-       		</form>
-       	
-       	
+       		<form action ="/test/generate" method="post">
+	        LOGIN: <input type = "text" name = "login">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	        <input type="submit">
+	   		</form>	
+	   		<a href="/">Back</a>
        	</div>
-       	
-       	<form action ="/test/generate" method="post">
-        LOGIN: <input type = "text" name = "login">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <input type="submit">
-   		</form>	
-        <c:out value="${code}"/>
-        
 	</body>
 </html>

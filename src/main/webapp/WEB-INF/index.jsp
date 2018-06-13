@@ -25,17 +25,24 @@
         <!-- End of title -->
         <!-- Enter code page  -->
         
-        <div class="enterCodeBox content-background">
+        <div class="enterCodeBox content-background" >
         <h1>Login</h1>
         	<form class="form" id="loginForm">
 				<input type="text" placeholder="Login" name="login">
 				<input type="text" placeholder="Code" name="code">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<button class='claim' type="submit">Claim</button>
+				<button id='claim' type="submit">Claim</button>
 			</form>
+			<a href="/test">Whitelist</a>
         </div>
         <!-- End of enter code page -->
-        
+        <div class="modal">
+	       	<div class="modal-content hidden" id="loginError">
+	       		<h2>Invalid credentials</h2>
+	       		<hr>
+	       		<button id="close">Close</button>
+	       	</div>
+	    </div>
         <!-- Pop the balloon -->
         <div class="balloons-page">
             <div class="board">
@@ -46,15 +53,15 @@
                 <div class="balloon green"></div>
             </div>
             <div class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <img alt="Movie Tickets" src="resources/${prize.image}">
-                    <h1>Congratulations!</h1>
-                    <p>You won Movie Tickets</p>
-                    <p>Please reach out Jimena@ to claim your prize</p>
-                    <hr>
-                    <button id="close">Close</button>
-                </div>
+	            <div class="modal-content" id="prizeBox">
+	                <span class=""closeFinal"">&times;</span>
+	                <div></div>
+	                <h1>Congratulations!</h1>
+	                <p id="prize">You won <span></span></p>
+	                <p>Please reach out Jimena@ to claim your prize</p>
+	                <hr>
+	                <button id="closeFinal">Close</button>
+	            </div>
             </div>
         </div>
         <!-- End of pop a balloon -->
