@@ -1,6 +1,7 @@
 package com.avvarga.popaballoon.controllers;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -8,11 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.ui.Model;
+
 import com.avvarga.popaballoon.models.User;
 import com.avvarga.popaballoon.services.UserService;
 
@@ -38,7 +40,10 @@ public class UserController {
 	}
 	//Admin
 	@RequestMapping("/admin")
-    public String adminPage() {
+    public String adminPage(Model model, Principal principal) {
+		User currentUser = uServ.findByUsername(principal.getName());
+		model.addAttribute("users", uServ.findAll());
+		model.addAttribute("currentUser", currentUser);
         return "Admin.jsp";
     }
 	
