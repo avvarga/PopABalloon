@@ -16,7 +16,7 @@
 <body>
 <div id="wrapper">
 	<header>
-	    <h4>Welcome <c:out value="${ users }"></c:out></h4>
+	    <h4>Welcome</h4>
 	    <a href="/">Dashboard</a>
 	    <form id="logoutForm" method="POST" action="/logout">
 	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

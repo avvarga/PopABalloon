@@ -30,15 +30,10 @@ public class UserController {
 		SecurityContextHolder.getContext().setAuthentication(null);
 		return "index.jsp";
 	}
-	
-	@RequestMapping("/test")
-	public String test(Model model) {
-		model.addAttribute("users", uServ.findAll());
-		return "test.jsp";
-	}
 	//Admin
 	@RequestMapping("/admin")
-    public String adminPage() {
+    public String adminPage(Model model) {
+		model.addAttribute("users", uServ.findAll());
         return "Admin.jsp";
     }
 	
