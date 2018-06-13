@@ -1,5 +1,6 @@
 package com.avvarga.popaballoon.controllers;
 
+import java.security.Principal;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -28,22 +29,15 @@ public class UserController {
 	}
 	
 	@RequestMapping("/test")
-	public String test() {
+	public String test(Model model) {
+		model.addAttribute("users", uServ.findAll());
 		return "test.jsp";
 	}
-	
-	@RequestMapping("/validate")
-	public String validate(@RequestParam("login") String login, @RequestParam("code") String code, HttpServletRequest request) {
-		try {
-			request.login(login, code);
-		} catch (ServletException e) {
-			System.out.println("Errors");
-			return "redirect:/"; 
-		}
-		System.out.println("you have entered");
-		return "redirect:/";
-		
-	}
+	//Admin
+	@RequestMapping("/admin")
+    public String adminPage() {
+        return "Admin.jsp";
+    }
 	
 	//Generate a code 
 	@PostMapping("/test/generate")
