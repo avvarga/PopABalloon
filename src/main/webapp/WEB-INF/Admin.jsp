@@ -16,7 +16,7 @@
 <body>
 <div id="wrapper">
 	<header>
-	    <h4>Welcome</h4>
+	    <h4>Welcome <c:out value="${ currentUser.login }"></c:out></h4>
 	    <a href="/">Dashboard</a>
 	    <form id="logoutForm" method="POST" action="/logout">
 	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -29,35 +29,17 @@
     		<tr>
     			<th>Login </th>
     			<th>Current Role</th>
-    			<th>Action </th>
     		</tr>
     	</thead>
     	<tbody>
     		<c:forEach var="user" items="${ users }">
     			<tr>
-    				<td> ${user.login} </td>
-    				<td> ${user.roles[0].name }
     				<c:choose>
-					    <c:when test="${ user.roles[0].name == 'ROLE_ADMIN' }">
-					        <td>  Admin</td>
-					    </c:when>    
-					    <c:otherwise>
-							<td>
-								<div class="dropdown">
-									<button >Actions 
-								    	<i class="fa fa-caret-down"></i>
-								    </button>
-								    <div class="dropdown-content">
-								    	<c:forEach var="role" items="${ roles }">
-									    	<c:if test = "${user.roles[0].name != role.name}">
-										    	<a href="/user/${role.name}/${user.id}">Make ${role.name}</a>
-									      	</c:if>
-								      	</c:forEach>
-								    </div>
-						  		</div> 
-							</td>
-					    </c:otherwise>
-					</c:choose>
+    					<c:when test="${ user.roles[0].name == 'ROLE_ADMIN' }">
+	    					<td> ${user.login} </td>
+	    					<td> ${user.roles[0].name } </td>
+    					</c:when>
+   					</c:choose>
     			</tr>
     		</c:forEach>
     	</tbody>

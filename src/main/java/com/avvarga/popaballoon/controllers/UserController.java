@@ -1,6 +1,7 @@
 package com.avvarga.popaballoon.controllers;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -8,11 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.ui.Model;
+
 import com.avvarga.popaballoon.models.User;
 import com.avvarga.popaballoon.services.UserService;
 
@@ -30,10 +32,18 @@ public class UserController {
 		SecurityContextHolder.getContext().setAuthentication(null);
 		return "index.jsp";
 	}
+	
+	@RequestMapping("/test")
+	public String test(Model model) {
+		model.addAttribute("users", uServ.findAll());
+		return "test.jsp";
+	}
 	//Admin
 	@RequestMapping("/admin")
-    public String adminPage(Model model) {
+    public String adminPage(Model model, Principal principal) {
+		User currentUser = uServ.findByUsername(principal.getName());
 		model.addAttribute("users", uServ.findAll());
+		model.addAttribute("currentUser", currentUser);
         return "Admin.jsp";
     }
 	
@@ -63,14 +73,24 @@ public class UserController {
         }
         String saltStr = salt.toString();
         model.addAttribute("code",saltStr);
-        //Creates the user
-        User nUser =  new User();
-        nUser.setLogin(login);
-        nUser.setCode(saltStr);
-        System.out.println(saltStr);
-        //Saves the user to the DB
-        uServ.saveWithUserRole(nUser);
+      //Validates if there is no other user
+  		if(uServ.findByUsername(login)!=null) {
+  			User nUser = uServ.findByUsername(login);
+  			nUser.setCode(saltStr);
+  			//Saves the user to the DB
+  	        uServ.saveWithUserRole(nUser);
+  		}
+  		else {
+  			User nUser =  new User();
+  	        nUser.setLogin(login);
+  	        nUser.setCode(saltStr);
+  	        //Saves the user to the DB
+  	        uServ.saveWithUserRole(nUser);
+  			
+  		}
 		return "redirect:/test";
 	}
+		
 	
 }
+	

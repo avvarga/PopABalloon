@@ -38,15 +38,19 @@ public class RewardController {
 			User user = uServ.findByUsername(principal.getName());
 			List <UserReward> prizes = user.getPrizes();
 			Random random = new Random();
-			Long id = (long) (random.nextInt(4)+1);
+			int id = (random.nextInt(4)+1);
+			System.out.println(id);
 			Reward prize = rServ.findById(id);
 			UserReward ur = new UserReward();
 			ur.setUser(user);
 			ur.setReward(prize);
 			ur.setStatus("Pending");
 			urServ.save(ur);
+			prizes.add(ur);
 			SecurityContextHolder.getContext().setAuthentication(null);
 			System.out.println(prize.getName());
+			user.setCode("invalid");
+			uServ.updateUser(user);
 			return prize;
 		}
 		
