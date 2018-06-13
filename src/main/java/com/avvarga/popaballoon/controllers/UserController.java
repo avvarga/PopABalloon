@@ -1,5 +1,6 @@
 package com.avvarga.popaballoon.controllers;
 
+import java.security.Principal;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -31,9 +32,15 @@ public class UserController {
 	}
 	
 	@RequestMapping("/test")
-	public String test() {
+	public String test(Model model) {
+		model.addAttribute("users", uServ.findAll());
 		return "test.jsp";
 	}
+	//Admin
+	@RequestMapping("/admin")
+    public String adminPage() {
+        return "Admin.jsp";
+    }
 	
 	@RequestMapping("/validate")
 	@ResponseBody

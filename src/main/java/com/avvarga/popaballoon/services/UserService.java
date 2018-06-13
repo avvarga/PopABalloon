@@ -1,5 +1,7 @@
 package com.avvarga.popaballoon.services;
 
+import java.util.List;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,9 @@ public class UserService {
 	public void updateUser(User user) {
 		uRepo.save(user);
 	}
+	public List <User> findAll(){
+    	return (List<User>) uRepo.findAll();
+    }
 	
 	
 }
